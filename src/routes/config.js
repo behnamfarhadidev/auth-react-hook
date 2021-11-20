@@ -31,7 +31,7 @@ export function PublicRoute({
       {...rest}
       render={({ location }) =>
         isAuthenticated && restricted ? (
-          <Redirect to={{ pathname: "/", state: { from: location } }} />
+          <Redirect to={{ pathname: "/profile", state: { from: location } }} />
         ) : (
           children
         )

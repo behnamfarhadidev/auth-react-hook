@@ -1,16 +1,16 @@
 import { Fragment, useState } from "react";
 import { loginUser } from "../../../context/auth/actions";
-import { useAuthDispatch } from "../../../context/auth/context";
+import { useAuthDispatch, useAuthState } from "../../../context/auth/context";
 import { useHistory } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-function Login() {
+function Login(props) {
   let history = useHistory();
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const userDetails = useAuthState();
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
+  console.log(props);
   const dispatch = useAuthDispatch();
   const loginHandler = (e) => {
     e.preventDefault();
@@ -19,6 +19,7 @@ function Login() {
     loginUser(dispatch, data);
     history.push("/profile");
   };
+
   return (
     <Fragment>
       <br />
@@ -36,7 +37,9 @@ function Login() {
                   <div className="col-md-4">
                     <form>
                       <div className="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
+                        <label htmlFor="exampleInputEmail1">
+                          Email address
+                        </label>
                         <input
                           type="email"
                           className="form-control"
@@ -51,7 +54,7 @@ function Login() {
                         </small>
                       </div>
                       <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                        <label htmlFor="exampleInputPassword1">Password</label>
                         <input
                           type="password"
                           className="form-control"
@@ -77,32 +80,6 @@ function Login() {
         </Card>
       </div>
     </Fragment>
-
-    // <Fragment>
-    //   <form>
-    //     <div>
-    //       <div>
-    //         <label htmlFor="email">Username</label>
-    //         <input
-    //           type="text"
-    //           id="email"
-    //           value={email}
-    //           onChange={(e) => setEmail(e.target.value)}
-    //         />
-    //       </div>
-    //       <div>
-    //         <label htmlFor="password">Password</label>
-    //         <input
-    //           type="password"
-    //           id="password"
-    //           value={password}
-    //           onChange={(e) => setPassword(e.target.value)}
-    //         />
-    //       </div>
-    //     </div>
-    //     <button onClick={handleLogin}>login</button>
-    //   </form>
-    // </Fragment>
   );
 }
 export default Login;

@@ -15,7 +15,12 @@ const MainRouter = () => {
           <PublicRoute exact path="/" isAuthenticated={isAuthenticated}>
             <Home />
           </PublicRoute>
-          <PublicRoute path="/login" exact isAuthenticated={isAuthenticated}>
+          <PublicRoute
+            path="/login"
+            exact
+            isAuthenticated={isAuthenticated}
+            restricted={isAuthenticated}
+          >
             <Login />
           </PublicRoute>
           <PrivateRoute path="/profile" exact isAuthenticated={isAuthenticated}>
