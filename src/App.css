@@ -1,3 +1,8 @@
+body {
+  background: #606c88;
+  background: -webkit-radial-gradient(circle, #606c88 0%, #3f4c6b 100%);
+  background: radial-gradient(circle, #606c88 0%, #3f4c6b 100%);
+}
 .App {
   text-align: center;
 }
